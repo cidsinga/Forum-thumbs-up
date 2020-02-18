@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
+import NewPost from './components/NewPost.jsx';
+import Feed from './components/Feed.jsx';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      masterFeed: []
+    };
+    this.handleAddNewPostToFeed = this.handleAddNewPostToFeed.bind(this);
+  }
+
+  function handleAddNewPostToFeed(newPost) {
+    let newMasterFeed = this.state.masterFeed.slice();
+    newMasterFeed.push(newPost);
+    this.setState({masterFeed: newMasterFeed});
+  }
+
+  render() {
+    return (
+      <div>
+        <NewPost onNewPost={this.handleAddNewPostToFeed} />
+        <Feed feed={this.state.masterFeed} />
+      </div>
+    );
+  }
 }
 
 export default App;
