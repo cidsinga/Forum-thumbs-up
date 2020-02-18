@@ -7,7 +7,7 @@ function NewPost(props) {
 
   function handleNewPostSubmission(event) {
     event.preventDefault();
-    props.onNewPost({content: _content, id: v4()});
+    props.onNewPost({content: _content.value, id: v4()});
     _content.value = '';
   }
 

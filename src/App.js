@@ -13,7 +13,7 @@ class App extends React.Component {
     this.handleAddNewPostToFeed = this.handleAddNewPostToFeed.bind(this);
   }
 
-  function handleAddNewPostToFeed(newPost) {
+  handleAddNewPostToFeed(newPost) {
     let newMasterFeed = this.state.masterFeed.slice();
     newMasterFeed.push(newPost);
     this.setState({masterFeed: newMasterFeed});
