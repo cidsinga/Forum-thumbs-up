@@ -34,9 +34,9 @@ class Post extends React.Component {
       <div style={postStyle}>
         <p>{this.props.content}</p>
         <p>{this.state.upVote}</p>
-        <p onClick={this.handleUpVote}><span role='img'>👍🏽</span></p>
+        <p onClick={this.handleUpVote}><span role='img' aria-label='thumbs-up'>👍🏽</span></p>
         <p>{this.state.downVote}</p>
-        <p onClick={this.handleDownVote}><span role='img'>👎🏽</span></p>
+        <p onClick={this.handleDownVote}><span role='img' aria-label='thumbs-down'>👎🏽</span></p>
       </div>
     );
   }
