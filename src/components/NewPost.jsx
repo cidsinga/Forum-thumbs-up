@@ -11,8 +11,14 @@ function NewPost(props) {
     _content.value = '';
   }
 
+  const newPostStyle = {
+    padding: '1em',
+    backgroundColor: 'lightgrey',
+    borderTop: '4px solid white',
+    borderBottom: '4px solid darkgrey',
+  }
   return (
-    <div>
+    <div style={newPostStyle}>
       <form onSubmit={handleNewPostSubmission}>
         <input
         type='text'

@@ -26,15 +26,17 @@ class Post extends React.Component {
   render() {
     const postStyle = {
       display: 'flex',
-      justifyContent: 'space-around'
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      borderBottom: '2px solid lightgrey'
     }
     return (
       <div style={postStyle}>
-      <p>{this.props.content}</p>
-      <p>{this.state.upVote}</p>
-      <p onClick={this.handleUpVote}><span role='img'>👍🏽</span></p>
-      <p>{this.state.downVote}</p>
-      <p onClick={this.handleDownVote}><span role='img'>👎🏽</span></p>
+        <p>{this.props.content}</p>
+        <p>{this.state.upVote}</p>
+        <p onClick={this.handleUpVote}><span role='img'>👍🏽</span></p>
+        <p>{this.state.downVote}</p>
+        <p onClick={this.handleDownVote}><span role='img'>👎🏽</span></p>
       </div>
     );
   }
