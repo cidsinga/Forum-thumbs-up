@@ -10,20 +10,44 @@ class App extends React.Component {
     this.state = {
       masterFeed: []
     };
-    this.handleAddNewPostToFeed = this.handleAddNewPostToFeed.bind(this);
+    this.handleAddNewPost = this.handleAddNewPost.bind(this);
+    this.handleUpVote = this.handleUpVote.bind(this);
+    this.handleDownVote = this.handleDownVote.bind(this);
   }
 
-  handleAddNewPostToFeed(newPost) {
+  handleAddNewPost(newPost) {
     let newMasterFeed = this.state.masterFeed.slice();
     newMasterFeed.push(newPost);
+    this.setState({masterFeed: newMasterFeed});
+  }
+
+  handleUpVote(id) {
+    let newMasterFeed = this.state.masterFeed.slice();
+    newMasterFeed.forEach(function(post) {
+      if (post.id == id) {
+        post.upvote ++;
+      }
+    });
+    this.setState({masterFeed: newMasterFeed});
+  }
+
+  handleDownVote(id) {
+    let newMasterFeed = this.state.masterFeed.slice();
+    newMasterFeed.forEach(function(post) {
+      if (post.id == id) {
+        post.downvote ++;
+      }
+    });
     this.setState({masterFeed: newMasterFeed});
   }
 
   render() {
     return (
       <div>
-        <NewPost onNewPost={this.handleAddNewPostToFeed} />
-        <Feed feed={this.state.masterFeed} />
+        <NewPost onAddNewPost={this.handleAddNewPost} />
+        <Feed feed={this.state.masterFeed}
+        onUpVote={this.handleUpVote}
+        onDownVote={this.handleDownVote} />
       </div>
     );
   }

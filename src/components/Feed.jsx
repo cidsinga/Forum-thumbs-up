@@ -3,11 +3,16 @@ import Post from './Post';
 import PropTypes from 'prop-types';
 
 function Feed(props) {
-console.log(props.feed);
+
   return (
     <div>
       {props.feed.map((post) =>
-        <Post content={post.content}
+        <Post finalContent={post.content}
+        finalUpVote={post.upvote}
+        finalDownVote={post.downvote}
+        onUpVote={props.onUpVote}
+        onDownVote={props.onDownVote}
+        id={post.id}
         key={post.id} />
       )}
     </div>
@@ -15,7 +20,9 @@ console.log(props.feed);
 }
 
 Feed.propTypes = {
-  feed: PropTypes.array
+  feed: PropTypes.array,
+  onUpVote: PropTypes.func,
+  onDownVote: PropTypes.func
 };
 
 export default Feed;

@@ -1,49 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Post extends React.Component {
+function Post(props) {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      upVote: 0,
-      downVote: 0
-    };
-    this.handleUpVote = this.handleUpVote.bind(this);
-    this.handleDownVote = this.handleDownVote.bind(this);
+  function onFinalUpVote() {
+    props.onUpVote(props.id);
   }
 
-  handleUpVote(vote) {
-    let newUpVote = this.state.upVote + 1;
-    this.setState({upVote: newUpVote});
+  function onFinalDownVote() {
+    props.onDownVote(props.id);
   }
 
-  handleDownVote(vote) {
-    let newDownVote = this.state.downVote + 1;
-    this.setState({downVote: newDownVote});
+  const stylePost = {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    borderBottom: '2px solid lightgrey'
   }
-
-  render() {
-    const postStyle = {
-      display: 'flex',
-      justifyContent: 'space-around',
-      alignItems: 'center',
-      borderBottom: '2px solid lightgrey'
-    }
-    return (
-      <div style={postStyle}>
-        <p>{this.props.content}</p>
-        <p>{this.state.upVote}</p>
-        <p onClick={this.handleUpVote}><span role='img' aria-label='thumbs-up'>👍🏽</span></p>
-        <p>{this.state.downVote}</p>
-        <p onClick={this.handleDownVote}><span role='img' aria-label='thumbs-down'>👎🏽</span></p>
-      </div>
-    );
-  }
+  return (
+    <div style={stylePost}>
+      <p>{props.finalContent}</p>
+      <p>{props.finalUpVote}</p>
+      <p onClick={onFinalUpVote}><span role='img' aria-label='thumbs-up'>👍🏽</span></p>
+      <p>{props.finalDownVote}</p>
+      <p onClick={onFinalDownVote}><span role='img' aria-label='thumbs-down'>👎🏽</span></p>
+    </div>
+  );
 }
 
 Post.propTypes = {
-  content: PropTypes.string.isRequired
+  finalContent: PropTypes.string.isRequired,
+  finalUpVote: PropTypes.number,
+  finalDownVote: PropTypes.number,
+  onUpVote: PropTypes.func,
+  onDownVote: PropTypes.func
 };
 
 export default Post;

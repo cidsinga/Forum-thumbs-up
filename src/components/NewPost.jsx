@@ -5,24 +5,23 @@ import { v4 } from 'uuid';
 function NewPost(props) {
   let _content = null;
 
-  function handleNewPostSubmission(event) {
+  function handleSubmitNewPost(event) {
     event.preventDefault();
-    props.onNewPost({content: _content.value, id: v4()});
+    props.onAddNewPost({content: _content.value, id: v4(), upvote: 0, downvote: 0});
     _content.value = '';
   }
 
-  const newPostStyle = {
+  const styleNewPost = {
     padding: '1em',
     backgroundColor: 'lightgrey',
     borderTop: '4px solid white',
-    borderBottom: '4px solid darkgrey',
+    borderBottom: '4px solid darkgrey'
   }
   return (
-    <div style={newPostStyle}>
-      <form onSubmit={handleNewPostSubmission}>
+    <div style={styleNewPost}>
+      <form onSubmit={handleSubmitNewPost}>
         <input
         type='text'
-        id='content'
         placeholder="What's on your mind?"
         ref={(input) => {_content = input;}} />
         <button type='submit'>Submit</button>
@@ -32,7 +31,7 @@ function NewPost(props) {
 }
 
 NewPost.propTypes = {
-  onNewPost: PropTypes.func
+  onAddNewPost: PropTypes.func
 };
 
 export default NewPost;
